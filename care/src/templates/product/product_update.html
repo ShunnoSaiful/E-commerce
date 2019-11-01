@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block contain %}
+
+<div style="margin-top: 1%;margin-left: 17%;">
+	<p>Update Product</p>
+	<hr>
+</div>
+
+<div style="margin-left: 17%;
+margin-top: 2%;">
+	<form action="" method="POST">{% csrf_token %}
+
+
+
+
+{% for field in form.visible_fields %}
+<br>
+{{ field.label_tag }}<br>
+{{ field }}
+<br>
+{% endfor %}
+<br>
+	<button style="float: left;" type="submit">Update</button>
+
+</form>
+
+</div>
+<style>
+	#id_name{
+		width: 41% !important;
+	}
+	#id_description{
+		width: 42% !important;
+	}
+	#id_vendor{
+		width: 35% !important;
+	}
+</style>
+
+{% endblock %}

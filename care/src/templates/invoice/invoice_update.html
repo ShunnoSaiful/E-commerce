@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block js %}
+<script>
+$(document).ready(function() {
+  $('.invoice_product_update_div').formset({
+    addText: 'Add More Product',
+    deleteText: 'DELETE',
+    prefix: 'invoiceproduct_set',
+  });
+});
+</script>
+{% endblock %}
+
+
+{% block contain %}
+<div style="margin-top: 1%;margin-left: 17%;">
+	<p>Update Invoice</p>
+	<hr>
+</div>
+
+<div style="margin-left: 17%;margin-top: 2%;margin-right: 2%;">
+  <form action="{% url 'update_invoice' form1.instance.id %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <div style="width:70%; float:left;margin-bottom:20px;">
+      <p style="font-size: 20px;font-weight: bold;color: #347ab4;">
+        RespoCare
+       </p>
+       <small style="font-size: 13px;font-weight: normal;">(Specialist Respiratory Care)</small><br>
+        <small style="font-size: 13px;font-weight: normal;color: #347ab4;">
+          155 (1st Floor),
+          Aziz Medicine & Medical Equipment Market<br>
+          Shahbag, Dhaka-1000.<br>
+          Mobile: 01712-166060, 01943-795007 <br>
+          E-mail: carerespo@gmail.com
+        </small>
+    </div>
+    <div style="width:30%; float:left;margin-bottom:20px;">
+      <img src="{% static 'images/logo.png' %}" style="width: 68%;">
+    </div>
+
+    <p style="text-align: center;padding: 7%;font-weight: bold;width:68%">INVOICE</p>
+      {% render_field form1.invoice_to rows="3" placeholder="INVOICE TO (CLIENT INFO)"  %}
+
+    <small style="float: right;margin-right: 9%;">
+      Invoice Date: <input type="date" name="invoice_date" id="id_invoice_date" value="{% now 'Y-m-d' %}">
+    </small>
+    <small style="float: right;margin-right: -29.5%;margin-top: 32px;">
+      Discount percentage: {% render_field form1.discount style="width: 28%;"  %}
+    </small>
+
+        <table id="table" style="margin-top: 3%;">
+            <tr>
+                <th class="col col-2">Product</th>
+                <th class="col col-3">Quantity</th>
+                <th class="col col-4">Price</th>
+                <th class="col col-5">Delete</th>
+            </tr>
+            {{ form2.management_form }}
+
+            {% for form in form2.forms %}
+              {% for hidden in form.hidden_fields %}
+                  {{ hidden }}
+              {% endfor %}
+
+           <tr class="invoice_product_update_div">
+            <td>{% render_field form.product %}</td>
+            <td>{% render_field form.quantity %}</td>
+            <td>{% render_field form.price %}</td>
+            <td>{{ form.DELETE }}</td>
+          </tr>
+
+          {% endfor %}
+
+
+        </table>
+         <div style="width:100%">
+           {% render_field form1.invoice_note rows="3" style="margin-top: 1%;" placeholder="INVOICE NOTES" %}
+         </div>
+        <button type="submit" style="margin-top: 12px;margin-bottom: 7%;">Update Invoice</button>
+  </form>
+</div>
+<style media="screen">
+  .add-row{
+    position: absolute;
+    margin-left: 71%;
+    margin-top: 6px;
+    background-color: cadetblue;
+    padding: 6px;
+    font-size: 15px;
+    color: #fff;
+  }
+
+#id_invoice_to{
+  padding: 10px;
+}
+
+#id_invoice_note{
+  padding: 10px;
+}
+
+</style>
+{% endblock %}
