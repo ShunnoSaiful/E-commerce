@@ -1,10 +1,44 @@
-from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import LoginForm, RegisterForm
 
 def home_page(request):
 	return render(request, "index.html", {})
+
+def about(request):
+	return render(request, "about.html", {})
+def blog(request):
+	return render(request, "blog.html", {})
+
+def cart(request):
+	return render(request, "cart.html", {})
+
+def category(request):
+	return render(request, "category.html", {})
+
+def checkout(request):
+	return render(request, "checkout.html", {})
+
+def confirmation(request):
+	return render(request, "confirmation.html", {})
+
+def contact(request):
+	return render(request, "contact.html", {})
+
+def elements(request):
+	return render(request, "elements.html", {})
+
+def single_blog(request):
+	return render(request, "single-blog.html", {})
+
+def single_product(request):
+	return render(request, "single-product.html", {})
+
+def tracking(request):
+	return render(request, "tracking.html", {})
+
 
 
 
@@ -33,7 +67,6 @@ def login_page(request):
 
 
 
-User = get_user_model()
 def register_page(request):
 	form = RegisterForm(request.POST or None)
 	context = {

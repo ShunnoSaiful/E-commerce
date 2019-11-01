@@ -22,7 +22,7 @@ class RegisterForm(forms.Form):
 		'class':'form-control',
 		'placeholder':'Username'
 		}))
-	email = forms.CharField(widget=forms.EmailInput(
+	email = forms.EmailField(widget=forms.EmailInput(
 		attrs={
 		'class':'form-control',
 		'placeholder':'E-mail'

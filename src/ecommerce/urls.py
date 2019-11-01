@@ -18,12 +18,26 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from .views import home_page, login_page, register_page
+from .views import home_page, login_page, register_page, home_page, about, blog, cart, category, checkout, confirmation, contact, elements, single_blog, single_product, tracking
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', home_page),
     url(r'^login/$', login_page),
     url(r'^register/$', register_page),
+    url(r'^about/$', about),
+    url(r'^blog/$', blog),
+    url(r'^singleproduct/$', single_product),
+    url(r'^singleblog/$', single_blog),
+    url(r'^cart/$', cart),
+    url(r'^category/$', category),
+    url(r'^contact/$', contact),
+    url(r'^confirmation/$', confirmation),
+    url(r'^checkout/$', checkout),
+    url(r'^elements/$', elements),
+    url(r'^tracking/$', tracking),
 
 ]
 
