@@ -27,7 +27,7 @@ class SubCategory(models.Model):
 class Product(models.Model):
     product_name        = models.CharField(max_length=100)
     product_image       = models.ImageField(upload_to='product_image/')
-    # product_category    = models.ForeignKey(Category, on_delete=models.CASCADE)
+    product_category    = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
     product_color       = models.CharField(max_length=20)
     product_brand       = models.CharField(max_length=30)
     product_size        = models.CharField(max_length=10)
