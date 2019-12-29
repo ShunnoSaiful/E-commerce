@@ -576,6 +576,7 @@ ul {
 
 /* line 57, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_button.scss */
 .btn_2 {
+  border-radius: 50px;
   display: inline-block;
   width: 180px;
   height: 60px;

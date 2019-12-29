@@ -19,12 +19,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from .views import home_page, login_page, register_page, home_page, about, blog, cart, category, checkout, confirmation, contact, elements, single_blog, single_product, tracking
-
+from products.views import product_list_view
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^$', home_page),
+    url(r'^$', product_list_view),
     url(r'^login/$', login_page),
     url(r'^register/$', register_page),
     url(r'^about/$', about),

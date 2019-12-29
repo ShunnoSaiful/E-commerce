@@ -120,30 +120,36 @@
     <section class="feature_part pt-4">
         <div class="container-fluid p-lg-0 overflow-hidden">
             <div class="row align-items-center justify-content-between">
+                {% for obj in product %}
                 <div class="col-lg-4 col-sm-6">
                     <div class="single_feature_post_text">
-                        <img src="img/feature_1.png" alt="#">
+                        <img src="{{ obj.product_image.url }}" alt="#">
                         <div class="hover_text">
                             <a href="single-product.html" class="btn_2">shop for male</a>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
+                {% for obj in object_list %}
                 <div class="col-lg-4 col-sm-6">
                     <div class="single_feature_post_text">
-                        <img src="img/feature_2.png" alt="#">
+                        <img src="{{ obj.product_image.url }}" alt="#">
                         <div class="hover_text">
                             <a href="single-product.html" class="btn_2">shop for male</a>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
+                {% for obj in object_list %}
                 <div class="col-lg-4 col-sm-6">
                     <div class="single_feature_post_text">
-                        <img src="img/feature_3.png" alt="#">
+                        <img src="{{ obj.product_image.url }}" alt="#">
                         <div class="hover_text">
                             <a href="single-product.html" class="btn_2">shop for male</a>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </section>
