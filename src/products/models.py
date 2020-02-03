@@ -1,5 +1,7 @@
 from django.db import models
-
+from .utils import unique_slug_generator
+from django.db.models.signals import pre_save
+from django.urls import reverse
 # Create your models here.
 
 
@@ -26,6 +28,7 @@ class SubCategory(models.Model):
 
 class Product(models.Model):
     product_name        = models.CharField(max_length=100)
+    slug                = models.SlugField(blank=True, unique=True)
     product_image       = models.ImageField(upload_to='product_image/')
     product_category    = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
     product_color       = models.CharField(max_length=20)
@@ -40,5 +43,25 @@ class Product(models.Model):
 
     def __str__(self):
         return str(self.product_name)
+    def get_absolute_url(self):
+        return reverse('products:detail', kwargs={"slug":self.slug})
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
+    image   = models.ImageField(upload_to='product_image/')
+
+    def __str__(self):
+        return str(self.image)
+
+
+
+
+
+def product_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+
+pre_save.connect(product_pre_save_receiver, sender=Product)
 
 

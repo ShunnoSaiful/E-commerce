@@ -14,6 +14,10 @@
   font-variant: normal;
   text-rendering: auto;
   line-height: 1; }
+.item-a { width:200px; }
+.item-b { width:340px; }
+.item-c { width:290px; }
+.item-d { width:220px; }
 
 .fa-lg {
   font-size: 1.33333em;
