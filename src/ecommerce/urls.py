@@ -18,19 +18,18 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from .views import home_page, login_page, register_page, home_page, about, blog, cart, category, checkout, confirmation, contact, elements, single_blog, single_product, tracking
-from carts.views import cart_home
+from accounts.views import home_page, login_page, register_page, home_page, about, blog, cart, category, checkout, confirmation, contact, elements, single_blog, single_product, tracking
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^products/', include("products.urls", namespace = "products")),
     url(r'^search/', include("search.urls", namespace = "search")),
+    url(r'^cart/', include("carts.urls", namespace = "cart")),
     url(r'^login/$', login_page),
     url(r'^register/$', register_page),
     url(r'^about/$', about),
     url(r'^blog/$', blog),
     url(r'^singleblog/$', single_blog),
-    url(r'^cart/$', cart_home),
     url(r'^category/$', category),
     url(r'^contact/$', contact),
     url(r'^confirmation/$', confirmation),

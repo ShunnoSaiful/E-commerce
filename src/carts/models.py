@@ -9,7 +9,9 @@ class CartManager(models.Manager):
     def new_or_get(self, request):
         cart_id = request.session.get("cart_id", None)
         qs = self.get_queryset().filter(id=cart_id)
-        if qs.count == 1:
+        print(qs)
+        print(qs.count())
+        if qs.count() == 1:
             new_obj = False
             cart_obj = qs.first()
             if request.user.is_authenticated and cart_obj.user is None:
@@ -28,9 +30,15 @@ class CartManager(models.Manager):
                 user_obj = user 
         return self.model.objects.create(user=user_obj)
 
+    # def carts(self):
+    #     cart_list = []
+    #     for pro in self.filter(user=request.user):
+    #         cart_list.append(pro.products)
+    #     return cart_list
+
 class Cart(models.Model):
     user             = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user', null=True, blank=True)
-    product_name     = models.ManyToManyField(Product, related_name='cart_product_name')
+    products         = models.ManyToManyField(Product, related_name='products')
     total_price      = models.DecimalField(default=00.00, max_digits=19, decimal_places=2)
 
     objects = CartManager()
@@ -42,11 +50,14 @@ class Cart(models.Model):
 def cart_pre_save_receiver(sender, instance, action, *args, **kwargs):
     if action == 'post_add' or action == 'post_remove' or action =='post_clear':
         products = instance.products.all()
+        print(products)
         total = 0
         for x in products:
             total += x.product_price
-        instance.total = total
+        print(total)
+        instance.total_price = total
         instance.save()
+
 
 
 m2m_changed.connect(cart_pre_save_receiver, sender=Cart.products.through)

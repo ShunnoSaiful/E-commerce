@@ -59,10 +59,18 @@
                 <input class="input-number" type="text" value="1" min="0" max="10">
                 <span class="number-increment"> <i class="ti-plus"></i></span>
               </div>
+              {% if product in cart.products.all %}
               <div class="add_to_cart">
-                  <a href="#" class="btn_3">add to cart</a>
+                  <a href="#" class="btn_3">Remove</a>
                   <a href="#" class="like_us"> <i class="ti-heart"></i> </a>
               </div>
+              {% else %}
+              <div class="add_to_cart">
+                  <a href="#" class="btn_3">Add to cart</a>
+                  <a href="#" class="like_us"> <i class="ti-heart"></i> </a>
+              </div>
+              {% endif %}
+
               <div class="social_icon">
                   <a href="#" class="fb"><i class="ti-facebook"></i></a>
                   <a href="#" class="tw"><i class="ti-twitter-alt"></i></a>
