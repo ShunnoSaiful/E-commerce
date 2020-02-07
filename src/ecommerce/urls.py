@@ -23,12 +23,11 @@ from products.views import home_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^$', home_view),
+    url(r'^$', home_view, name="home"),
     url(r'^products/', include("products.urls", namespace = "products")),
     url(r'^search/', include("search.urls", namespace = "search")),
     url(r'^cart/', include("carts.urls", namespace = "cart")),
-    url(r'^login/$', login_page),
-    url(r'^register/$', register_page),
+    url(r'^account/', include("accounts.urls", namespace = "accounts")),
     url(r'^about/$', about),
     url(r'^blog/$', blog),
     url(r'^singleblog/$', single_blog),

@@ -17,6 +17,18 @@ li {
     margin-right: 6px;
     cursor:pointer;
 }
+/**************** navbar user avatar  ****************/
+.user-dropdown {
+    padding-left: 50px;
+    padding-right: 15px;
+}
+.user-img {
+
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+
+}
 
 /**************** extend css start ****************/
 /**************** common css start ****************/
@@ -2150,7 +2162,7 @@ ul {
 /**************menu part start*****************/
 /* line 3, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_menu.scss */
 .main_menu .navbar-brand {
-  padding-top: 0rem;
+  padding-left: 70px;
   padding-bottom: 0px;
 }
 
