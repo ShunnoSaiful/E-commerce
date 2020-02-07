@@ -19,9 +19,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from accounts.views import home_page, login_page, register_page, home_page, about, blog, cart, category, checkout, confirmation, contact, elements, single_blog, single_product, tracking
+from products.views import home_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^$', home_view),
     url(r'^products/', include("products.urls", namespace = "products")),
     url(r'^search/', include("search.urls", namespace = "search")),
     url(r'^cart/', include("carts.urls", namespace = "cart")),

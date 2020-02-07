@@ -28,32 +28,12 @@
     <section class="feature_part pt-4">
         <div class="container-fluid p-lg-0 overflow-hidden">
             <div class="row align-items-center justify-content-between">
-                {% for obj in product %}
+                {% for obj in category %}
                 <div class="col-lg-4 col-sm-6">
                     <div class="single_feature_post_text">
-                        <img src="{{ obj.product_image.url }}" alt="#">
+                        <img src="{{ obj.image.url }}" alt="#">
                         <div class="hover_text">
-                            <a href="{{obj.get_absolute_url}}" class="btn_2">shop for male</a>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-                {% for obj in object_list %}
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_feature_post_text">
-                        <img src="{{ obj.product_image.url }}" alt="#">
-                        <div class="hover_text">
-                            <a href="single-product.html" class="btn_2">shop for male</a>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-                {% for obj in object_list %}
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_feature_post_text">
-                        <img src="{{ obj.product_image.url }}" alt="#">
-                        <div class="hover_text">
-                            <a href="single-product.html" class="btn_2">shop for male</a>
+                            <a href="{{obj.get_absolute_url}}" class="btn_2">shop for {{obj.category}}</a>
                         </div>
                     </div>
                 </div>
@@ -76,9 +56,9 @@
                     <div class="arrival_filter_item filters">
                         <ul>
                             <li class="active controls" data-filter="*">all</li>
-                            <li class="controls" data-toggle=".men">men</li>
-                            <li class="controls" data-toggle=".women">women</li>
-                            <li class="controls" data-toggle=".shoes">shoes</li>
+                            {% for subc in subcategory|slice:":3" %}
+                            <li class="controls" data-toggle=".{{subc.category}}">{{subc.category}}</li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -88,11 +68,13 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="new_arrival_iner filter-container">
-                        <div class="single_arrivel_item weidth_1 mix shoes">
-                            <img src="img/arrivel/arrivel_5.png" alt="#">
+                        {% for subc in category %}
+                        {% for product in subc.product_set.all|slice:":2" %}
+                        <div class="single_arrivel_item weidth_1 mix {{subc.category}}">
+                            <img src='{{product.product_image.url}}' alt="#">
                             <div class="hover_text">
-                                <p>Canvas</p>
-                                <a href="single-product.html"><h3>Lorem Canvas Low-Top Sneaker</h3></a>
+                                <p>{{ product.product_category }}</p>
+                                <a href="{{product.get_absolute_url}}"><h3>{{product.product_name}}</h3></a>
                                 <div class="rate_icon">
                                     <a href="#"> <i class="fas fa-star"></i> </a>
                                     <a href="#"> <i class="fas fa-star"></i> </a>
@@ -100,51 +82,15 @@
                                     <a href="#"> <i class="fas fa-star"></i> </a>
                                     <a href="#"> <i class="fas fa-star"></i> </a>
                                 </div>
-                                <h5>$150</h5>
+                                <h5>${{product.product_price}}</h5>
                                 <div class="social_icon">
                                     <a href="#"><i class="ti-heart"></i></a>
                                     <a href="#"><i class="ti-bag"></i></a>
                                 </div>
                             </div>
                         </div>
-                        <div class="single_arrivel_item weidth_2 mix women">
-                            <img src="img/arrivel/arrivel_2.png" alt="#">
-                            <div class="hover_text">
-                                <p>Canvas</p>
-                                <a href="single-product.html"><h3>Lorem Canvas Low-Top Sneaker</h3></a>
-                                <div class="rate_icon">
-                                    <a href="#"> <i class="fas fa-star"></i> </a>
-                                    <a href="#"> <i class="fas fa-star"></i> </a>
-                                    <a href="#"> <i class="fas fa-star"></i> </a>
-                                    <a href="#"> <i class="fas fa-star"></i> </a>
-                                    <a href="#"> <i class="fas fa-star"></i> </a>
-                                </div>
-                                <h5>$150</h5>
-                                <div class="social_icon">
-                                    <a href="#"><i class="ti-heart"></i></a>
-                                    <a href="#"><i class="ti-bag"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single_arrivel_item weidth_3 mix women" >
-                            <img src="img/arrivel/arrivel_3.png" alt="#">
-                            <div class="hover_text">
-                                <p>Canvas</p>
-                                <a href="single-product.html"><h3>Lorem Canvas Low-Top Sneaker</h3></a>
-                                <div class="rate_icon">
-                                    <a href="#"> <i class="fas fa-star"></i> </a>
-                                    <a href="#"> <i class="fas fa-star"></i> </a>
-                                    <a href="#"> <i class="fas fa-star"></i> </a>
-                                    <a href="#"> <i class="fas fa-star"></i> </a>
-                                    <a href="#"> <i class="fas fa-star"></i> </a>
-                                </div>
-                                <h5>$150</h5>
-                                <div class="social_icon">
-                                    <a href="#"><i class="ti-heart"></i></a>
-                                    <a href="#"><i class="ti-bag"></i></a>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
+                        {% endfor %}
                     </div>
                 </div> 
             </div>
@@ -153,33 +99,33 @@
     <!-- new arrival part end -->
 
     <!-- free shipping here -->
-    <section class="shipping_details section_padding">
+    <section class="shipping_details">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_shopping_details">
-                        <img src="img/icon/icon_1.png" alt="">
+                        <img src="{% static 'img/icon/icon_1.png' %}" alt="">
                         <h4>Free shipping</h4>
                         <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_shopping_details">
-                        <img src="img/icon/icon_2.png" alt="">
+                        <img src="{% static 'img/icon/icon_2.png' %}" alt="">
                         <h4>Free shipping</h4>
                         <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_shopping_details">
-                        <img src="img/icon/icon_3.png" alt="">
+                        <img src="{% static 'img/icon/icon_3.png' %}" alt="">
                         <h4>Free shipping</h4>
                         <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_shopping_details">
-                        <img src="img/icon/icon_4.png" alt="">
+                        <img src="{% static 'img/icon/icon_4.png' %}" alt="">
                         <h4>Free shipping</h4>
                         <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
                     </div>
@@ -191,30 +137,16 @@
 
     <!-- subscribe_area part start-->
     <section class="instagram_photo">
-        <div class="container-fluid>
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="instagram_photo_iner">
+                        {% for img in product|slice:":5" %}
                         <div class="single_instgram_photo">
-                            <img src="img/instagram/inst_1.png" alt="">
+                            <img src="{{ img.product_image.url }}" alt="">
                             <a href="#"><i class="ti-instagram"></i></a> 
                         </div>
-                        <div class="single_instgram_photo">
-                            <img src="img/instagram/inst_2.png" alt="">
-                            <a href="#"><i class="ti-instagram"></i></a> 
-                        </div>
-                        <div class="single_instgram_photo">
-                            <img src="img/instagram/inst_3.png" alt="">
-                            <a href="#"><i class="ti-instagram"></i></a> 
-                        </div>
-                        <div class="single_instgram_photo">
-                            <img src="img/instagram/inst_4.png" alt="">
-                            <a href="#"><i class="ti-instagram"></i></a> 
-                        </div>
-                        <div class="single_instgram_photo">
-                            <img src="img/instagram/inst_5.png" alt="">
-                            <a href="#"><i class="ti-instagram"></i></a> 
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

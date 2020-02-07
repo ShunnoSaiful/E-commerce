@@ -47,7 +47,7 @@ input:focus {
 
 /* line 25, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_common.scss */
 .section_padding {
-  padding: 140px 0px;
+  padding: 50px 0px;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
@@ -583,7 +583,6 @@ ul {
 
 /* line 57, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_button.scss */
 .btn_2 {
-  border-radius: 50px;
   display: inline-block;
   width: 180px;
   height: 60px;
@@ -4019,7 +4018,7 @@ ul {
 .s_product_text p {
   padding-top: 20px;
   border-top: 1px dotted #d5d5d5;
-  margin: 20px 0;
+  margin: 50px 0;
 }
 
 /* line 738, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_product.scss */
@@ -4444,6 +4443,7 @@ ul {
   border: 1px solid #eeeeee;
   border-radius: 3px;
   max-width: 150px;
+  max-height: 85px;
 }
 
 /* line 1136, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_product.scss */
@@ -5763,8 +5763,9 @@ ul {
 
 /* line 43, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_new_arrival.scss */
 .new_arrival .new_arrival_iner .weidth_1 {
-  flex: 39% 0 0;
-  max-width: 39%;
+  flex: 30% 0 0;
+  max-width: 30%;
+  height: 420px;
 }
 
 @media (max-width: 576px) {
@@ -5837,7 +5838,7 @@ ul {
 /* line 89, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_new_arrival.scss */
 .new_arrival .single_arrivel_item img {
   width: 100%;
-  max-height: 550px;
+  height: 100%;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
@@ -5964,6 +5965,7 @@ ul {
 /* line 2, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_shipping_details.scss */
 .shipping_details {
   background-color: #fff;
+  padding-top: 0px;
 }
 
 @media (max-width: 991px) {
@@ -6001,6 +6003,7 @@ ul {
 /* line 2, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_instagram_photo.scss */
 .instagram_photo {
   background-color: #fff;
+  padding-top: 90px;
 }
 
 /* line 4, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_instagram_photo.scss */
@@ -6028,7 +6031,10 @@ ul {
   position: relative;
   z-index: 1;
 }
-
+.instagram_photo .instagram_photo_iner .single_instgram_photo img {
+  height: 263.833px;
+  width: 263.833px;
+}
 @media (max-width: 576px) {
   /* line 14, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_instagram_photo.scss */
   .instagram_photo .instagram_photo_iner .single_instgram_photo {

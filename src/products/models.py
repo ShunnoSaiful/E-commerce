@@ -8,29 +8,26 @@ from django.urls import reverse
 
 
 class Category(models.Model):
-    category_name = models.CharField(max_length=30)
-    
+    category = models.CharField(max_length=30)
+    image    = models.ImageField(upload_to='category image/')
+    slug     = models.SlugField(blank=True)
+
 
     def __str__(self):
-        return str(self.category_name)
+        return str(self.category)
+
+    def get_absolute_url(self):
+        return reverse('products:product_list_view', kwargs={"slug":self.slug})
 
 
-
-class SubCategory(models.Model):
-    category  = models.ForeignKey(Category, on_delete=models.CASCADE)
-    sub_category = models.CharField(max_length=30)
-    
-
-    def __str__(self):
-        return str(self.sub_category)
 
 
 
 class Product(models.Model):
     product_name        = models.CharField(max_length=100)
     slug                = models.SlugField(blank=True, unique=True)
-    product_image       = models.ImageField(upload_to='product_image/')
-    product_category    = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
+    product_image       = models.ImageField(upload_to='product image/')
+    product_category    = models.ForeignKey(Category, on_delete=models.CASCADE)
     product_color       = models.CharField(max_length=20)
     product_brand       = models.CharField(max_length=30)
     product_size        = models.CharField(max_length=10)

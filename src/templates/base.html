@@ -93,10 +93,10 @@
                               </ul>
                           </div>
                           <div class="hearer_icon d-flex">
-                              <div class="dropdown cart">
-                                  <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
-                                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      <i class="ti-bag"></i>
+                              <div>
+                                  <a style="color: #000;" href="{% url 'cart:home'%}">
+                                      <i class="fas fa-shopping-cart"></i>
+                                      <span>{{request.session.cart_items}}</span>
                                   </a>
                                   <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                       <div class="single_product">
@@ -140,7 +140,7 @@
         <!-- swiper js -->
         <script src='{% static "js/swiper.min.js" %}'></script>
         <!-- swiper js -->
-        
+        <script src='{% static "js/mixitup.min.js" %}'></script>
         <!-- particles js -->
         <script src='{% static "js/owl.carousel.min.js" %}'></script>
         <script src='{% static "js/jquery.nice-select.min.js" %}'></script>
@@ -157,5 +157,6 @@
         <script src='{% static "js/price_rangs.js" %}'></script>
         <!-- custom js -->
         <script src='{% static "js/custom.js" %}'></script>
+        
     </body>
 </html>
