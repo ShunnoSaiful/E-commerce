@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -14,6 +15,18 @@ class LoginForm(forms.Form):
 		'class':'form-control',
 		'placeholder':'Password'
 		}))
+
+
+	def clean_username(self):
+		username = self.cleaned_data.get("username")
+		password = self.cleaned_data.get("password")
+		user = authenticate(username=username, password=password)
+		qs = User.objects.filter(username=username)
+		if not qs.exists():
+			raise forms.ValidationError("Username is not valid")
+		if user is None:
+			raise forms.ValidationError("tt is not valid")
+		return username
 
 
 class RegisterForm(forms.Form):

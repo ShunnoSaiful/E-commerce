@@ -47,19 +47,13 @@ def login_page(request):
 	context = {
 		'form':form
 	}
-	print("User logged in")
-	print(request.user.is_authenticated)
 	if form.is_valid():
 		print(form.cleaned_data)
 		username = form.cleaned_data.get("username")
 		password = form.cleaned_data.get("password")
 		user = authenticate(request, username=username, password=password)
-		print(request.user.is_authenticated)
 		if user is not None:
 			login(request, user)
-			print(request.user.is_authenticated)
-			# Redirect to a success page.
-			# context['form'] = LoginForm()
 			return redirect('/')
 		else:
 			...
