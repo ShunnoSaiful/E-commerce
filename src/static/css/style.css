@@ -573,8 +573,8 @@ ul {
 /* line 39, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_button.scss */
 .btn_3 {
   display: inline-block;
-  padding: 9px 42px;
-  border-radius: 50px;
+  padding: 14px 18px;
+  border-radius: 50%;
   background-color: #2f7dfc;
   border: 1px solid #f4f4f4;
   font-size: 15px;
@@ -589,10 +589,12 @@ ul {
 
 /* line 52, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_button.scss */
 .btn_3:hover {
+  color: #fff;
+}
+.in_cart:hover {
   background-color: red;
   color: #fff;
 }
-
 /* line 57, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_button.scss */
 .btn_2 {
   display: inline-block;

@@ -28,7 +28,7 @@
                             <h2>New to our Shop?</h2>
                             <p>There are advances being made in science and technology
                                 everyday, and a good example of this is the</p>
-                            <a href="/register" class="btn_3">Create an Account</a>
+                            <a href="{% url 'accounts:register' %}" class="btn_3">Create an Account</a>
                         </div>
                     </div>
                 </div>
@@ -39,15 +39,10 @@
                                 Please Sign in now</h3>
                             <form class="row contact_form" action="" method="POST" novalidate="novalidate">{% csrf_token %}
                                  {% for field in form.visible_fields %}
-                                <div class="col-md-12 form-group p_star">
+                                <div class="col-md-12 form-group text-danger p_star">
                                     
                                     {{ field }}
-                                    <p class="text-warning">
-                                        {{ field.errors }}
-                                    </p>
-                                    
-                                    <!-- <input type="text" class="form-control" id="name" name="name" value=""
-                                        placeholder="Username"> -->
+                                    {{ field.errors }}
                                     
                                 </div>
                                 {% endfor %}

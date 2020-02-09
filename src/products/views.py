@@ -17,7 +17,8 @@ def home_view(request):
 
 def product_list_view(request,slug=None):
     category = get_object_or_404(Category, slug=slug)
-    products_list = Product.objects.all()
+    products_list = Product.objects.filter(product_category=category)
+    print(products_list)
     context = {
         "product" : products_list,
         "category" : category,
